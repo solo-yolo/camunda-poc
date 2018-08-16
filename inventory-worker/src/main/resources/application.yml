@@ -1,0 +1,8 @@
+spring.application.name: inventory-worker
+camunda.url: http://localhost:8080/engine-rest
+server:
+  port: 9003
+topic:
+    create-inventory: create-generic-vport
+    fail-inventory-vport: fail-inventory-vport
+    generic-vport-created: generic-vport-created

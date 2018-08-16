@@ -1,0 +1,8 @@
+spring.application.name: northbound-worker
+camunda.url: http://localhost:8080/engine-rest
+server:
+  port: 9004
+northbound.url: http://localhost:9005
+topic:
+    create-northbound: create-northbound-service
+    check-northbound: check-service-status

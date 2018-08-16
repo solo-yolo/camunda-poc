@@ -1,0 +1,9 @@
+spring.application.name: db-worker
+camunda.url: http://localhost:8080/engine-rest
+server:
+  port: 9002
+
+topic:
+    create-db-vport: create-db-vport
+    fail-db-vport: fail-db-vport
+    db-vport-created: db-vport-created
