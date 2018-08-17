@@ -54,7 +54,7 @@ public class NorthboundResource {
 
     class ServiceCreationJob implements Runnable {
 
-        private static final int MIN_WAIT_TIME = 15;
+        private static final int MIN_WAIT_TIME = 10;
         private static final int MAX_WAIT_TIME = 15;
 
         private final String id;
