@@ -1,27 +1,15 @@
 package io.github.q1nt.inventory;
 
-import org.camunda.bpm.client.ExternalTaskClient;
-import org.camunda.bpm.client.backoff.ExponentialBackoffStrategy;
-import org.springframework.beans.factory.annotation.Value;
+import io.github.q1nt.config.ExternalTaskClientConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
+@Import(ExternalTaskClientConfig.class)
 public class InventoryWorkerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(InventoryWorkerApplication.class, args);
-    }
-
-    @Bean
-    ExternalTaskClient client(
-            @Value("${spring.application.name}") String appName,
-            @Value("${camunda.url}") String camundaUrl) {
-        return ExternalTaskClient.create()
-                .baseUrl(camundaUrl)
-                .backoffStrategy(new ExponentialBackoffStrategy(500L, 2, 1000L))
-                .workerId(appName)
-                .build();
     }
 }
