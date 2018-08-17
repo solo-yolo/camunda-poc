@@ -16,7 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Getter
 @Component
-public class VportFailedHandler extends BaseHandler {
+public class VportFailedHandler implements BaseHandler {
 
     private final VportRepository repository;
     private final ExternalTaskClient client;

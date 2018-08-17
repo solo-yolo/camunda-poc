@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 @Getter
-public class CreateGenericVportHandler extends BaseHandler {
+public class CreateGenericVportHandler implements BaseHandler {
 
     private final InventoryService inventory;
     private final ExternalTaskClient client;

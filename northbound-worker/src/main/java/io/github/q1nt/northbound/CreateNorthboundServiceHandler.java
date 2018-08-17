@@ -16,7 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Getter
 @Component
-public class CreateNorthboundServiceHandler extends BaseHandler {
+public class CreateNorthboundServiceHandler implements BaseHandler {
 
     private final NorthboundClient northbound;
     private final ExternalTaskClient client;

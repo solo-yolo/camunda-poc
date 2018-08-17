@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Getter
 @Component
-public class CreateVportHandler extends BaseHandler {
+public class CreateVportHandler implements BaseHandler {
 
     private final VportRepository repository;
     private final ExternalTaskClient client;
