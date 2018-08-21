@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  camunda:
+    image: camunda/camunda-bpm-platform:latest
+    ports:
+      - 8080:8080
+
+  northbound-app:
+    build: ./northbound-app
+    ports:
+      - 9005:9005
+
+  db-worker:
+    build: ./db-worker
+    ports:
+      - 9002:9002
+    links:
+      - camunda
+
+  inventory-worker:
+    build: ./inventory-worker
+    ports:
+      - 9003:9003
+    links:
+      - camunda
+
+  northbound-worker:
+    build: ./northbound-worker
+    ports:
+      - 9004:9004
+    links:
+      - camunda
+      - northbound-app
+
+  entry-point:
+    build: ./entry-point
+    ports:
+      - 9001:9001
+    links:
+      - camunda
+      - db-worker
