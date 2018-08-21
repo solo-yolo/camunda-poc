@@ -103,7 +103,8 @@
       <bpmn:endEvent id="EndEvent_1q8sf3m">
         <bpmn:incoming>SequenceFlow_135169s</bpmn:incoming>
       </bpmn:endEvent>
-      <bpmn:sequenceFlow id="SequenceFlow_135169s" name="completed&#10;or failed" sourceRef="ExclusiveGateway_00pb463" targetRef="EndEvent_1q8sf3m">
+        <bpmn:sequenceFlow id="SequenceFlow_135169s" name="created&#10;or failed" sourceRef="ExclusiveGateway_00pb463"
+                targetRef="EndEvent_1q8sf3m">
         <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${status!='in-progress'}</bpmn:conditionExpression>
       </bpmn:sequenceFlow>
       <bpmn:sequenceFlow id="SequenceFlow_096dadn" name="in-progress" sourceRef="ExclusiveGateway_00pb463" targetRef="IntermediateThrowEvent_1noq8y5">
@@ -126,8 +127,9 @@
     <bpmn:sequenceFlow id="SequenceFlow_0myu13y" name="status failed" sourceRef="ExclusiveGateway_1t5isak" targetRef="IntermediateThrowEvent_0xw294l">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${status=='failed'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_0sje9un" name="status completed" sourceRef="ExclusiveGateway_1t5isak" targetRef="Task_1vm7rhd">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${status=='completed'}</bpmn:conditionExpression>
+      <bpmn:sequenceFlow id="SequenceFlow_0sje9un" name="status created" sourceRef="ExclusiveGateway_1t5isak"
+              targetRef="Task_1vm7rhd">
+          <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${status=='created'}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_125st11" sourceRef="BoundaryEvent_1kbtuxh" targetRef="IntermediateThrowEvent_0xw294l" />
     <bpmn:association id="Association_0p7y45f" associationDirection="One" sourceRef="BoundaryEvent_18k52a5" targetRef="Task_0d66kal" />
@@ -294,7 +296,7 @@
         <di:waypoint x="1304" y="268" />
         <di:waypoint x="1371" y="268" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1311" y="235" width="51" height="27" />
+            <dc:Bounds height="27" width="40" x="1317" y="235"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_096dadn_di" bpmnElement="SequenceFlow_096dadn">
@@ -330,7 +332,7 @@
         <di:waypoint x="1501" y="70" />
         <di:waypoint x="1213" y="70" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1505" y="195" width="84" height="14" />
+            <dc:Bounds height="14" width="70" x="1512" y="195"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_125st11_di" bpmnElement="SequenceFlow_125st11">
