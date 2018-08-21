@@ -22,6 +22,7 @@
         <module>inventory-worker</module>
         <module>northbound-app</module>
         <module>northbound-worker</module>
+        <module>load-test</module>
     </modules>
 
     <properties>

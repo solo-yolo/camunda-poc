@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>camunda-poc</artifactId>
+        <groupId>io.github.q1nt</groupId>
+        <version>0.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>load-test</artifactId>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <gatling.version>2.3.1</gatling.version>
+        <gatling-plugin.version>2.2.4</gatling-plugin.version>
+        <scala-maven-plugin.version>3.4.2</scala-maven-plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.gatling.highcharts</groupId>
+            <artifactId>gatling-charts-highcharts</artifactId>
+            <version>${gatling.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>camunda-poc</artifactId>
+                    <groupId>io.github.q1nt</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>db-worker</artifactId>
+                    <groupId>io.github.q1nt</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>entry-point</artifactId>
+                    <groupId>io.github.q1nt</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>inventory-worker</artifactId>
+                    <groupId>io.github.q1nt</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>northbound-app</artifactId>
+                    <groupId>io.github.q1nt</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>northbound-worker</artifactId>
+                    <groupId>io.github.q1nt</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-buffer -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-buffer</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-codec -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-codec-http -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec-http</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-common -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-common</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-handler -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-handler</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-transport -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-transport-native-epoll -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-transport-native-epoll</artifactId>
+            <version>4.0.56.Final</version>
+        </dependency>
+
+
+
+
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${scala-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>io.gatling</groupId>
+                <artifactId>gatling-maven-plugin</artifactId>
+                <version>${gatling-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>execution1</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <simulationClass>io.github.q1nt.load.CamundaSimulation</simulationClass>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--<configFolder>${project.basedir}/src/test/resources</configFolder>-->
+                    <!--<dataFolder>${project.basedir}/src/test/resources/data</dataFolder>-->
+                    <!--<resultsFolder>${project.basedir}/target/gatling/results</resultsFolder>-->
+                    <!--<bodiesFolder>${project.basedir}/src/test/resources/bodies</bodiesFolder>-->
+                    <!--<simulationsFolder>${project.basedir}/src/test/scala</simulationsFolder>-->
+                    <!--    <noReports>false</noReports> -->
+                    <!--   <reportsOnly>directoryName</reportsOnly> -->
+                    <!--   <simulationClass>foo.Bar</simulationClass> -->
+                    <!--   <jvmArgs> -->
+                    <!--     <jvmArg>-DmyExtraParam=foo</jvmArg> -->
+                    <!--   </jvmArgs> -->
+                    <!--    <fork>true</fork> -->
+                    <!--    <propagateSystemProperties>true</propagateSystemProperties> -->
+                    <!--   <failOnError>true</failOnError> -->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
