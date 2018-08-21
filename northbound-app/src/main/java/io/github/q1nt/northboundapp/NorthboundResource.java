@@ -8,6 +8,7 @@ import io.github.q1nt.northbound.CreateServiceOutput;
 import io.github.q1nt.northbound.Service;
 import io.github.q1nt.northbound.ServiceStatus;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +35,12 @@ public class NorthboundResource {
     private final Map<String, Service> data = new HashMap<>();
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
 
+
+    @Value("${service.create.min-wait}")
+    private int minWait;
+    @Value("${service.create.max-wait}")
+    private int maxWait;
+
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PostMapping("/service")
     CreateServiceOutput createService(@RequestBody CreateServiceInput input) {
@@ -41,7 +48,7 @@ public class NorthboundResource {
         String id = UUID.randomUUID().toString();
         Service service = new Service(input.getFoo(), ServiceStatus.IN_PROGRESS);
         data.put(id, service);
-        executor.submit(new ServiceCreationJob(id));
+        executor.submit(new ServiceCreationJob(id, minWait, maxWait));
         return new CreateServiceOutput(id);
     }
 
@@ -54,17 +61,14 @@ public class NorthboundResource {
 
     class ServiceCreationJob implements Runnable {
 
-        private static final int MIN_WAIT_TIME = 10;
-        private static final int MAX_WAIT_TIME = 15;
-
         private final String id;
         private final int wait;
         private final Random random;
 
-        ServiceCreationJob(String id) {
+        ServiceCreationJob(String id, int minWait, int maxWait) {
             this.id = id;
             this.random = new Random();
-            this.wait = random.nextInt(MAX_WAIT_TIME) + MIN_WAIT_TIME;
+            this.wait = random.nextInt(maxWait - minWait) + minWait;
             log.info("will wait {} for completion", wait);
         }
 
