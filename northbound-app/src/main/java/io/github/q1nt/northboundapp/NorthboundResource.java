@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 
 @Slf4j
@@ -33,12 +32,16 @@ import java.util.concurrent.Executors;
 public class NorthboundResource {
 
     private final Map<String, Service> data = new HashMap<>();
-    private final ExecutorService executor = Executors.newFixedThreadPool(3);
+    private final ExecutorService executor;
 
     @Value("${service.create.min-wait}")
     private int minWait;
     @Value("${service.create.max-wait}")
     private int maxWait;
+
+    public NorthboundResource(ExecutorService executor) {
+        this.executor = executor;
+    }
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PostMapping("/service")

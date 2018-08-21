@@ -11,3 +11,5 @@ spring:
 service.create:
     min-wait: 1
     max-wait: 10
+
+thread-pool-size: 2
