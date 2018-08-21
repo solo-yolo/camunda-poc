@@ -9,5 +9,5 @@ spring:
   main.banner-mode: 'off'
 
 service.create:
-    min-wait: 10
-    max-wait: 30
+    min-wait: 1
+    max-wait: 10

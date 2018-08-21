@@ -35,7 +35,6 @@ public class NorthboundResource {
     private final Map<String, Service> data = new HashMap<>();
     private final ExecutorService executor = Executors.newFixedThreadPool(3);
 
-
     @Value("${service.create.min-wait}")
     private int minWait;
     @Value("${service.create.max-wait}")
@@ -81,7 +80,7 @@ public class NorthboundResource {
                 Thread.currentThread().interrupt();
             }
             log.info("service creation finished");
-            ServiceStatus status = random.nextBoolean() ? ServiceStatus.CREATED : ServiceStatus.FAILED;
+            ServiceStatus status = ServiceStatus.CREATED;
             data.get(id).setStatus(status);
             log.info("service id: {} - status: {}", id, status);
         }
