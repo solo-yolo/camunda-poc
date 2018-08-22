@@ -30,7 +30,7 @@ http :9001/api/vport foo=bar
 
 Start load testing by executing:
 ```bash
-mvn -pl load-test gatling:test
+mvn test -Pload-testing
 ```
 
 ![ConstantUsersPerSec](1-ConstantUsersPerSec_15-Sec.png)

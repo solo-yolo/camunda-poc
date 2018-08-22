@@ -12,7 +12,7 @@ import scala.concurrent.duration._
 
 class CamundaSimulation extends Simulation with LazyLogging {
   val httpProtocol = http
-    .baseURL("http://172.18.195.61:9001")
+    .baseURL("http://127.0.0.1:9001")
     .inferHtmlResources()
     .acceptHeader("*/*")
 
@@ -52,7 +52,7 @@ class CamundaSimulation extends Simulation with LazyLogging {
     .exec(validateVPortStatus)
 
   //Add 10 user immediately
-  setUp(scn.inject(atOnceUsers(10))).protocols(httpProtocol)
+  setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 
   //Add users from 1 to 10 during 15 seconds
   //setUp(scn.inject(rampUsersPerSec(1) to 10 during (15 seconds))).protocols(httpProtocol)
