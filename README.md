@@ -27,3 +27,10 @@ Start vport creation by executing:
 ```bash
 http :9001/api/vport foo=bar
 ```
+
+Start load testing by executing:
+```bash
+mvn test -Pload-testing
+```
+
+![ConstantUsersPerSec](1-ConstantUsersPerSec_15-Sec.png)
